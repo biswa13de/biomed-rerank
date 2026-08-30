@@ -91,15 +91,18 @@ elsewhere does not count if the grader cannot find the heading.
 
 **At least FIVE distinct queries** — one per required case.
 
+Auto-selected by `src/analysis/rank_deltas.py` → `results/tables/task4_selected_cases.csv`
+(full evidence in `task4_rank_deltas.csv`, `task4_ndcg_deltas.csv`).
+
 | Required case | Query ID | Status |
 |---|---|---|
-| Relevant document promoted | | ☐ |
-| Irrelevant document moved lower | | ☐ |
-| Ranking changes very little | | ☐ |
-| Failure — reranking does not improve relevance | | ☐ |
-| Domain-specific terminology / abbreviation | | ☐ |
-| For **each**: why the ranking changed | | ☐ |
-| For **each**: whether the final ranking is more useful to the user | | ☐ |
+| Relevant document promoted | 1368 | ☑ selected |
+| Irrelevant document moved lower | 238 | ☑ selected |
+| Ranking changes very little | 1012 | ☑ selected |
+| Failure — reranking does not improve relevance | 324 | ☑ selected |
+| Domain-specific terminology / abbreviation | 936 | ☑ selected |
+| For **each**: why the ranking changed | | ☐ needs hand annotation |
+| For **each**: whether the final ranking is more useful to the user | | ☐ needs hand annotation |
 
 ### Task 5 — Retrieval and Reranking Evaluation (2 marks)
 

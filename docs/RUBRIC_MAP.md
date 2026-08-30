@@ -79,13 +79,13 @@ elsewhere does not count if the grader cannot find the heading.
 
 | Requirement | Artefact | Status |
 |---|---|---|
-| Pre-trained cross-encoder reranks candidates | `src/rerank/cross_encoder.py` | ☐ |
-| Query-document pairs → relevance score → sort → Top-K | Pipeline + worked trace | ☐ |
-| **Explain:** bi-encoder vs cross-encoder | Markdown + Figure 2 | ☐ |
-| **Explain:** how cross-encoder models query-doc interaction | Printed `input_ids`, joint attention | ☐ |
-| **Explain:** why cross-encoders are useful for reranking | Markdown | ☐ |
-| **Explain:** why reranking is applied only to a small candidate set | Cost O(K) argument + latency data | ☐ |
-| **Explain:** how biomedical terminology affects relevance scoring | Domain-shift discussion + MedCPT contrast | ☐ |
+| Pre-trained cross-encoder reranks candidates | `src/rerank/cross_encoder.py`, `src/rerank/run_stage2.py` | ☑ code done |
+| Query-document pairs → relevance score → sort → Top-K | Pipeline + `results/tables/stage2_trace.json` | ☑ |
+| **Explain:** bi-encoder vs cross-encoder | Markdown + Figure 2 | ☐ writing |
+| **Explain:** how cross-encoder models query-doc interaction | Printed `input_ids`, joint attention (see trace.json) | ☐ writing |
+| **Explain:** why cross-encoders are useful for reranking | Markdown | ☐ writing |
+| **Explain:** why reranking is applied only to a small candidate set | Cost O(K) argument + `results/tables/stage2_latency.csv` | ☐ writing |
+| **Explain:** how biomedical terminology affects relevance scoring | Domain-shift discussion + MedCPT contrast | ☐ needs MedCPT comparison run (Task 6) |
 
 ### Task 4 — Before vs After Reranking (2 marks)
 

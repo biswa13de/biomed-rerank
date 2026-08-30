@@ -108,18 +108,19 @@ Auto-selected by `src/analysis/rank_deltas.py` → `results/tables/task4_selecte
 
 | Requirement | Artefact | Status |
 |---|---|---|
-| Precision@5 | `src/eval/metrics.py` (hand-rolled) | ☐ |
-| Recall@5 | ″ | ☐ |
-| MRR | ″ | ☐ |
-| NDCG@5 | ″ | ☐ |
-| **At least 10 queries**, initial vs reranked | All 300 (20× the floor) | ☐ |
-| Parity check vs `pytrec_eval` | `tests/test_metrics.py` + visible cell | ☐ |
-| Binary-label caveat stated **before** the numbers | Markdown | ☐ |
-| Recall-ceiling table (K = 5,10,20,50,100) | `results/tables/recall_ceiling.csv` | ☐ |
-| **Discuss:** limitations of cross-encoder reranking | Markdown | ☐ |
-| **Discuss:** retrieval quality vs reranking latency | Per-stage latency table | ☐ |
-| **Discuss:** where reranking helps significantly | Per-query delta distribution | ☐ |
-| **Discuss:** where it provides little/no improvement | Tied to recall ceiling | ☐ |
+| Precision@5 | `src/eval/metrics.py` (hand-rolled) | ☑ |
+| Recall@5 | ″ | ☑ |
+| MRR | ″ | ☑ |
+| NDCG@5 | ″ | ☑ |
+| **At least 10 queries**, initial vs reranked | All 300 (20× the floor) — `stage5_metrics_full.csv` | ☑ |
+| Parity check vs `pytrec_eval` | `tests/test_metrics.py` + visible cell | ☑ |
+| Paired significance test (bootstrap + Wilcoxon) | `src/eval/significance.py`, parity vs scipy in `tests/test_significance.py`, results in `stage5_significance.json` | ☑ |
+| Binary-label caveat stated **before** the numbers | Printed by `run_stage5.py`; needs notebook markdown too | ◐ |
+| Recall-ceiling table (K = 5,10,20,50,100) | `results/tables/stage5_recall_ceiling.csv` | ☑ |
+| **Discuss:** limitations of cross-encoder reranking | Markdown | ☐ writing |
+| **Discuss:** retrieval quality vs reranking latency | `stage2_latency.csv` | ☐ writing |
+| **Discuss:** where reranking helps significantly | `stage5_per_query_deltas.csv` (13.3% improved, 16.0% degraded, mean Δ not significant: CI [-0.038, 0.020], Wilcoxon p=0.45) | ☐ writing |
+| **Discuss:** where it provides little/no improvement | Tied to recall ceiling (hybrid Recall@20=0.87) | ☐ writing |
 
 ### Task 6 — Candidate Size Experiment (1 mark)
 

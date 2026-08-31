@@ -124,14 +124,17 @@ Auto-selected by `src/analysis/rank_deltas.py` → `results/tables/task4_selecte
 
 ### Task 6 — Candidate Size Experiment (1 mark)
 
+`src/experiments/candidate_size.py` → `results/tables/stage6_grid.csv` +
+`results/figures/stage6_{ndcg,latency}_vs_k.png`.
+
 | Requirement | Artefact | Status |
 |---|---|---|
-| Compare pool sizes (Top-5 / 10 / 20 …) | K ∈ {5,10,20,50} | ☐ |
-| *(Optional alt.)* compare two cross-encoders | MiniLM-L6 vs MedCPT | ☐ |
-| Effect on **ranking quality** | Figure: nDCG@5 vs K | ☐ |
-| Effect on **inference latency** | Figure: latency vs K | ☐ |
-| Explain trade-off: more candidates vs compute cost | Knee analysis + recommendation | ☐ |
-| **Experimental Constraint** statement (fixed factors) | `ARCHITECTURE.md` §7 table, reproduced | ☐ |
+| Compare pool sizes (Top-5 / 10 / 20 …) | K ∈ {5,10,20,50} | ☑ |
+| *(Optional alt.)* compare two cross-encoders | MiniLM-L6 vs MedCPT — did both axes | ☑ |
+| Effect on **ranking quality** | Figure: nDCG@5 vs K — MedCPT climbs 0.70→0.77 (not yet saturated); MiniLM-L6 flat ~0.66 | ☑ |
+| Effect on **inference latency** | Figure: latency vs K — linear for both; MedCPT ~3x MiniLM-L6 per candidate | ☑ |
+| Explain trade-off: more candidates vs compute cost | Knee analysis + recommendation | ☐ writing |
+| **Experimental Constraint** statement (fixed factors) | `ARCHITECTURE.md` §7 table, reproduced | ☐ writing |
 
 ### Task 7 — Reranking Error Analysis (1 mark)
 

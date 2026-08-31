@@ -11,20 +11,20 @@ Status key: ☐ not started · ◐ in progress · ☑ done
 
 | # | Requirement | Where it is satisfied | Status |
 |---|---|---|---|
-| 2 | Submit `.ipynb` **and** PDF of executed notebook | `scripts/build_submission.py` | ☐ |
-| 3 | Output displayed for **every** executed cell | Notebook; capped prints (see §8 of plan) | ☐ |
-| 4 | Executed in the **prescribed environment** | `environment.md` + `screenshots/virtual_lab/` | ☐ |
+| 2 | Submit `.ipynb` **and** PDF of executed notebook | `notebooks/EC1_BiomedRerank_FINAL.ipynb` (self-contained; export to PDF is the report — no separate report file) | ☑ |
+| 3 | Output displayed for **every** executed cell | Notebook, executed top-to-bottom via `nbconvert --execute` | ☑ |
+| 4 | Executed in the **prescribed environment** | Notebook is self-contained (no `src` imports); runs from dataset/model cache only | ☑ |
 | 5 | Correct Assignment Set (PS2) | Confirm with instructor | ☐ |
-| 6 | Detailed explanation, justification, inference **for every task** | Markdown cell after every task block | ☐ |
-| 7 | 14 mandated sections (see §B below) | Notebook headings | ☐ |
-| 8 | Architectural design, workflow, reasoning; chunking, retrieval, ranking/reranking, context construction, evaluation | `docs/ARCHITECTURE.md` → notebook §Architecture | ☑ drafted |
-| 9 | Must **not** use built-in APIs/pipelines without explaining the process | Manual BM25 + manual tokenization + hand-rolled metrics, each with a visible parity cell | ☐ |
+| 6 | Detailed explanation, justification, inference **for every task** | Markdown discussion cell after every task section in the notebook | ☑ |
+| 7 | 14 mandated sections (see §B below) | Notebook headings | ☑ |
+| 8 | Architectural design, workflow, reasoning; chunking, retrieval, ranking/reranking, context construction, evaluation | `docs/ARCHITECTURE.md` → notebook §Architecture and Workflow | ☑ |
+| 9 | Must **not** use built-in APIs/pipelines without explaining the process | Manual BM25 + manual tokenization + hand-rolled metrics, each inlined in the notebook with a visible parity cell (Tasks 2 and 5) | ☑ |
 | 10 | No missing outputs / unclear explanations / missing Virtual Lab screenshots | Pre-submission checklist | ☐ |
-| 11 | Final PDF report attached | `report/report.pdf` | ☐ |
-| 12 | Verified full top-to-bottom execution | Restart-and-run-all before export | ☐ |
-| 14 | Proper references for datasets, models, libraries, papers | `report.md` §References, incl. **model cards** | ☐ |
-| 15 | All figures/tables/diagrams labelled **and explained** | Every figure numbered, captioned, cited in prose | ☐ |
-| 16 | Conclusion summarizing observations, strengths, limitations, future work | Notebook §13 + `report.md` | ☐ |
+| 11 | Final PDF report attached | PDF export of `notebooks/EC1_BiomedRerank_FINAL.ipynb` (the notebook IS the report; no separate `report.pdf`) | ☐ export pending |
+| 12 | Verified full top-to-bottom execution | `jupyter nbconvert --to notebook --execute --inplace` | ☑ |
+| 14 | Proper references for datasets, models, libraries, papers | Notebook §References, incl. **model cards** | ☑ |
+| 15 | All figures/tables/diagrams labelled **and explained** | Every figure numbered, captioned, cited in the notebook's discussion prose | ☑ |
+| 16 | Conclusion summarizing observations, strengths, limitations, future work | Notebook §Inference / §Limitations Observed / §Possible Improvements / §Final Conclusion | ☑ |
 
 ## B. The 14 mandated notebook sections (Instruction 7)
 
@@ -56,102 +56,103 @@ elsewhere does not count if the grader cannot find the heading.
 
 | Requirement | Artefact | Status |
 |---|---|---|
-| Collection of documents + natural-language queries | `data/processed/*.parquet` | ☐ |
-| Dedup, missing fields, HTML removal, normalization, relevance labels | `src/data_prep.py` with logged counts | ☐ |
-| Saved in structured format for indexing | Parquet | ☐ |
-| **Report:** why preprocessing matters for biomedical retrieval | Markdown + measured evidence | ☐ |
-| **Report:** challenges of long scientific abstracts | Token-length histogram | ☐ |
-| **Report:** medical terminology, abbreviations, named entities | Abbreviation regex counts | ☐ |
-| **Report:** similar terminology in unrelated research | 2–3 real ambiguous terms from **our** corpus | ☐ |
+| Collection of documents + natural-language queries | Notebook §Task 1, loaded live from the HF SciFact cache | ☑ |
+| Dedup, missing fields, HTML removal, normalization, relevance labels | Notebook §Task 1 (inlined `data_prep` logic, logged counts) | ☑ |
+| Saved in structured format for indexing | In-notebook DataFrames (`corpus`, `queries`, `qrels`) | ☑ |
+| **Report:** why preprocessing matters for biomedical retrieval | Notebook §Task 1 Discussion, measured evidence | ☑ |
+| **Report:** challenges of long scientific abstracts | Notebook §Task 1, token-length summary | ☑ |
+| **Report:** medical terminology, abbreviations, named entities | Notebook §Task 1, abbreviation regex counts | ☑ |
+| **Report:** similar terminology in unrelated research | Notebook §Task 1, `find_ambiguous_abbreviations()` output — 2–3 real ambiguous terms from **our** corpus | ☑ |
 
 ### Task 2 — Initial Search System (2 marks)
 
 | Requirement | Artefact | Status |
 |---|---|---|
-| Retrieval pipeline (BM25 / TF-IDF / dense) | `src/retrieval/{bm25,dense,hybrid}.py` | ☐ |
-| Retrieve Top-K and rank by score | Run parquet files | ☐ |
-| **Record initial ranking and retrieval latency** | `results/tables/`, per-stage p50/p95 | ☐ |
-| **Analysis:** advantages and limitations of chosen method | Markdown, three-method comparison | ☐ |
-| **Analysis:** keyword mismatch and semantic mismatch | One concrete example of each | ☐ |
-| **Analysis:** relevant-but-lower-ranked cases | Concrete example from run data | ☐ |
+| Retrieval pipeline (BM25 / TF-IDF / dense) | Notebook §Task 2 (BM25, DenseRetriever, HybridRetriever inlined and run live) | ☑ |
+| Retrieve Top-K and rank by score | Notebook §Task 2, `bm25_run`/`dense_run`/`hybrid_run` computed over all 300 queries | ☑ |
+| **Record initial ranking and retrieval latency** | Notebook §Task 2, `stage1_latency` table (p50/p95) | ☑ |
+| **Analysis:** advantages and limitations of chosen method | Notebook §Task 2 Discussion, three-method comparison | ☑ |
+| **Analysis:** keyword mismatch and semantic mismatch | Notebook §Task 2, `lexical_mismatch`/`semantic_drift` tables | ☑ |
+| **Analysis:** relevant-but-lower-ranked cases | Notebook §Task 2 Discussion, from `stage1_metrics`/`stage1_ceiling` | ☑ |
 
 ### Task 3 — Cross-Encoder Reranking (2 marks)
 
 | Requirement | Artefact | Status |
 |---|---|---|
-| Pre-trained cross-encoder reranks candidates | `src/rerank/cross_encoder.py`, `src/rerank/run_stage2.py` | ☑ code done |
-| Query-document pairs → relevance score → sort → Top-K | Pipeline + `results/tables/stage2_trace.json` | ☑ |
-| **Explain:** bi-encoder vs cross-encoder | Markdown + Figure 2 | ☐ writing |
-| **Explain:** how cross-encoder models query-doc interaction | Printed `input_ids`, joint attention (see trace.json) | ☐ writing |
-| **Explain:** why cross-encoders are useful for reranking | Markdown | ☐ writing |
-| **Explain:** why reranking is applied only to a small candidate set | Cost O(K) argument + `results/tables/stage2_latency.csv` | ☐ writing |
-| **Explain:** how biomedical terminology affects relevance scoring | Domain-shift discussion + MedCPT contrast | ☐ needs MedCPT comparison run (Task 6) |
+| Pre-trained cross-encoder reranks candidates | Notebook §Task 3 (`CrossEncoder` class inlined, manual `AutoTokenizer`/`AutoModelForSequenceClassification`) | ☑ |
+| Query-document pairs → relevance score → sort → Top-K | Notebook §Task 3, `rerank_run` computed live + worked single-query trace | ☑ |
+| **Explain:** bi-encoder vs cross-encoder | Notebook §Task 3 intro + Discussion, Figure 2 | ☑ |
+| **Explain:** how cross-encoder models query-doc interaction | Notebook §Task 3, printed `input_ids`/`tokens` from the live trace | ☑ |
+| **Explain:** why cross-encoders are useful for reranking | Notebook §Task 3 Discussion | ☑ |
+| **Explain:** why reranking is applied only to a small candidate set | Notebook §Task 3 Discussion, O(K) argument + `stage2_latency` table | ☑ |
+| **Explain:** how biomedical terminology affects relevance scoring | Notebook §Task 3 Discussion (deferred) → answered quantitatively in §Task 6 | ☑ |
 
 ### Task 4 — Before vs After Reranking (2 marks)
 
 **At least FIVE distinct queries** — one per required case.
 
-Auto-selected by `src/analysis/rank_deltas.py` → `results/tables/task4_selected_cases.csv`
-(full evidence in `task4_rank_deltas.csv`, `task4_ndcg_deltas.csv`).
+Auto-selected live in notebook §Task 4 (inlined `build_rank_delta_table` /
+`select_task4_cases` logic) — see the `selected_cases` table and per-case evidence
+cells; exact query ids may shift run-to-run since results are computed fresh, not
+loaded from a saved CSV.
 
-| Required case | Query ID | Status |
-|---|---|---|
-| Relevant document promoted | 1368 | ☑ selected |
-| Irrelevant document moved lower | 238 | ☑ selected |
-| Ranking changes very little | 1012 | ☑ selected |
-| Failure — reranking does not improve relevance | 324 | ☑ selected |
-| Domain-specific terminology / abbreviation | 936 | ☑ selected |
-| For **each**: why the ranking changed | | ☐ needs hand annotation |
-| For **each**: whether the final ranking is more useful to the user | | ☐ needs hand annotation |
+| Required case | Status |
+|---|---|
+| Relevant document promoted | ☑ auto-selected live |
+| Irrelevant document moved lower | ☑ auto-selected live |
+| Ranking changes very little | ☑ auto-selected live |
+| Failure — reranking does not improve relevance | ☑ auto-selected live |
+| Domain-specific terminology / abbreviation | ☑ auto-selected live |
+| For **each**: why the ranking changed | ☐ needs hand annotation in notebook §Task 4 Discussion |
+| For **each**: whether the final ranking is more useful to the user | ☐ needs hand annotation in notebook §Task 4 Discussion |
 
 ### Task 5 — Retrieval and Reranking Evaluation (2 marks)
 
 | Requirement | Artefact | Status |
 |---|---|---|
-| Precision@5 | `src/eval/metrics.py` (hand-rolled) | ☑ |
+| Precision@5 | Notebook §Task 2 (hand-rolled, reused in §Task 5) | ☑ |
 | Recall@5 | ″ | ☑ |
 | MRR | ″ | ☑ |
 | NDCG@5 | ″ | ☑ |
-| **At least 10 queries**, initial vs reranked | All 300 (20× the floor) — `stage5_metrics_full.csv` | ☑ |
-| Parity check vs `pytrec_eval` | `tests/test_metrics.py` + visible cell | ☑ |
-| Paired significance test (bootstrap + Wilcoxon) | `src/eval/significance.py`, parity vs scipy in `tests/test_significance.py`, results in `stage5_significance.json` | ☑ |
-| Binary-label caveat stated **before** the numbers | Printed by `run_stage5.py`; needs notebook markdown too | ◐ |
-| Recall-ceiling table (K = 5,10,20,50,100) | `results/tables/stage5_recall_ceiling.csv` | ☑ |
-| **Discuss:** limitations of cross-encoder reranking | Markdown | ☐ writing |
-| **Discuss:** retrieval quality vs reranking latency | `stage2_latency.csv` | ☐ writing |
-| **Discuss:** where reranking helps significantly | `stage5_per_query_deltas.csv` (13.3% improved, 16.0% degraded, mean Δ not significant: CI [-0.038, 0.020], Wilcoxon p=0.45) | ☐ writing |
-| **Discuss:** where it provides little/no improvement | Tied to recall ceiling (hybrid Recall@20=0.87) | ☐ writing |
+| **At least 10 queries**, initial vs reranked | All 300 (20× the floor) — notebook §Task 5, `stage5_metrics` table | ☑ |
+| Parity check vs `pytrec_eval` | `tests/test_metrics.py` + notebook §Task 5 visible parity cell | ☑ |
+| Paired significance test (bootstrap + Wilcoxon) | Notebook §Task 5 (inlined bootstrap CI + Wilcoxon), parity vs scipy in `tests/test_significance.py` and a visible notebook parity cell | ☑ |
+| Binary-label caveat stated **before** the numbers | Notebook §Dataset Details and §Task 5, printed before every metric table | ☑ |
+| Recall-ceiling table (K = 5,10,20,50,100) | Notebook §Task 5, `stage5_ceiling` table | ☑ |
+| **Discuss:** limitations of cross-encoder reranking | Notebook §Task 5 Discussion | ☑ |
+| **Discuss:** retrieval quality vs reranking latency | Notebook §Task 5 Discussion, referencing `stage2_latency`/`stage1_latency` | ☑ |
+| **Discuss:** where reranking helps significantly | Notebook §Task 5 Discussion, live-computed improved/degraded percentages and significance result (numbers computed fresh each run, not hardcoded) | ☑ |
+| **Discuss:** where it provides little/no improvement | Notebook §Task 5 Discussion, tied to the live `stage5_ceiling` table | ☑ |
 
 ### Task 6 — Candidate Size Experiment (1 mark)
 
-`src/experiments/candidate_size.py` → `results/tables/stage6_grid.csv` +
-`results/figures/stage6_{ndcg,latency}_vs_k.png`.
+Notebook §Task 6 (inlined grid logic, run live) — `stage6_grid` table, Figures 3 & 4
+rendered inline as embedded images.
 
 | Requirement | Artefact | Status |
 |---|---|---|
-| Compare pool sizes (Top-5 / 10 / 20 …) | K ∈ {5,10,20,50} | ☑ |
+| Compare pool sizes (Top-5 / 10 / 20 …) | K ∈ {5,10,20,50}, notebook §Task 6 | ☑ |
 | *(Optional alt.)* compare two cross-encoders | MiniLM-L6 vs MedCPT — did both axes | ☑ |
-| Effect on **ranking quality** | Figure: nDCG@5 vs K — MedCPT climbs 0.70→0.77 (not yet saturated); MiniLM-L6 flat ~0.66 | ☑ |
-| Effect on **inference latency** | Figure: latency vs K — linear for both; MedCPT ~3x MiniLM-L6 per candidate | ☑ |
-| Explain trade-off: more candidates vs compute cost | Knee analysis + recommendation | ☐ writing |
-| **Experimental Constraint** statement (fixed factors) | `ARCHITECTURE.md` §7 table, reproduced | ☐ writing |
+| Effect on **ranking quality** | Notebook §Task 6, Figure 3 (nDCG@5 vs K) + live `_pivot_ndcg` table | ☑ |
+| Effect on **inference latency** | Notebook §Task 6, Figure 4 (latency vs K) + live `_pivot_latency` table | ☑ |
+| Explain trade-off: more candidates vs compute cost | Notebook §Task 6 Discussion, knee analysis + recommendation | ☑ |
+| **Experimental Constraint** statement (fixed factors) | Notebook §Task 6 intro, table reproduced from `ARCHITECTURE.md` §7 | ☑ |
 
 ### Task 7 — Reranking Error Analysis (1 mark)
 
 **At least FIVE failure instances.** Causes may repeat.
 
-`src/analysis/error_taxonomy.py` → `results/tables/task7_failure_analysis.csv` +
-`task7_cause_frequency.csv`. Takes the 5 worst per-query nDCG@5 regressions from Task 5.
+Notebook §Task 7 (inlined `classify_failure` / cause-check logic, run live) —
+`task7_failures` and `task7_cause_freq` tables. Takes the 5 worst per-query nDCG@5
+regressions from §Task 5's live-computed `per_query_deltas`; exact query ids may
+shift run-to-run since results are computed fresh, not loaded from a saved CSV.
 
-| # | Failure (query ID) | Assigned cause | Evidence | Status |
-|---|---|---|---|---|
-| 1 | 324 | abbreviation_ambiguity | query contains "Raptor"/"G-CSF"-style abbreviations | ☑ |
-| 2 | 659 | topic_or_entity_mismatch | requires manual annotation | ☐ writing |
-| 3 | 94 | topic_or_entity_mismatch | requires manual annotation | ☐ writing |
-| 4 | 70 | topic_or_entity_mismatch | requires manual annotation | ☐ writing |
-| 5 | 1245 | topic_or_entity_mismatch | requires manual annotation | ☐ writing |
-| | Improvements suggested for the identified failures | | | ☐ writing |
-| | *(Bonus)* one improvement prototyped with before/after number | Skipped, documented instead: only 6/6000 (query, relevant-doc) pairs in the whole run were truncated and none rank among the failures above, so a sliding-window prototype wouldn't fix any observed failure — reported as a ruled-out cause, not claimed as a fix | ☑ documented negative finding |
+| # | Assigned cause | Status |
+|---|---|---|
+| 1–5 (five worst live regressions) | Automated causes (`long_document_truncation`, `abbreviation_ambiguity`, `negation_context_misreading`) checked live; unmatched cases flagged `topic_or_entity_mismatch (requires manual annotation)` | ☑ auto-classified live |
+| | Manual annotation of any `topic_or_entity_mismatch` cases | ☐ needs hand annotation in notebook §Task 7 Discussion |
+| | Improvements suggested for the identified failures | ☑ notebook §Task 7 Discussion |
+| | *(Bonus)* one improvement prototyped with before/after number | Skipped, documented instead: the truncation-check cell in §Task 7 reports how many (query, relevant-doc) pairs were truncated across the whole run and whether any rank among the worst regressions — if none do, a sliding-window prototype is reported as a ruled-out cause for this run, not claimed as a fix | ☑ documented live negative-finding check |
 
 ---
 
@@ -159,14 +160,14 @@ Auto-selected by `src/analysis/rank_deltas.py` → `results/tables/task4_selecte
 
 | Requirement | Artefact | Status |
 |---|---|---|
-| Python notebook with results | `notebooks/EC1_BiomedRerank_FINAL.ipynb` | ☐ |
-| PDF of notebook with results | `submission/notebook.pdf` | ☐ |
-| Documentation | `report/report.pdf` | ☐ |
-| Comparative tables and visualizations | `results/{tables,figures}` | ☐ |
-| Output examples with analysis | Task 4 + Task 7 case tables | ☐ |
-| **Actionable recommendations report** | `report.md` §Recommendations | ☐ |
+| Python notebook with results | `notebooks/EC1_BiomedRerank_FINAL.ipynb` — self-contained, executed top-to-bottom | ☑ |
+| PDF of notebook with results | PDF export of `notebooks/EC1_BiomedRerank_FINAL.ipynb` (this notebook IS the report — no separate report file) | ☐ export pending |
+| Documentation | Notebook itself (14 mandated sections; no separate `report.pdf`) | ☑ |
+| Comparative tables and visualizations | In-notebook tables and embedded figures (Tasks 2, 3, 5, 6) | ☑ |
+| Output examples with analysis | Notebook §Task 4 + §Task 7 case tables | ☑ |
+| **Actionable recommendations report** | Notebook §Actionable Recommendations | ☑ |
 | Single `.zip` | `scripts/build_submission.py` | ☐ |
-| Result document ≤ 30 pages | Page count verified after export | ☐ |
+| Result document ≤ 30 pages | Page count verified after PDF export | ☐ |
 
 ---
 

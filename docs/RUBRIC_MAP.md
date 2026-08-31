@@ -140,15 +140,18 @@ Auto-selected by `src/analysis/rank_deltas.py` → `results/tables/task4_selecte
 
 **At least FIVE failure instances.** Causes may repeat.
 
+`src/analysis/error_taxonomy.py` → `results/tables/task7_failure_analysis.csv` +
+`task7_cause_frequency.csv`. Takes the 5 worst per-query nDCG@5 regressions from Task 5.
+
 | # | Failure (query ID) | Assigned cause | Evidence | Status |
 |---|---|---|---|---|
-| 1 | | | | ☐ |
-| 2 | | | | ☐ |
-| 3 | | | | ☐ |
-| 4 | | | | ☐ |
-| 5 | | | | ☐ |
-| | Improvements suggested for the identified failures | | | ☐ |
-| | *(Bonus)* one improvement prototyped with before/after number | | | ☐ |
+| 1 | 324 | abbreviation_ambiguity | query contains "Raptor"/"G-CSF"-style abbreviations | ☑ |
+| 2 | 659 | topic_or_entity_mismatch | requires manual annotation | ☐ writing |
+| 3 | 94 | topic_or_entity_mismatch | requires manual annotation | ☐ writing |
+| 4 | 70 | topic_or_entity_mismatch | requires manual annotation | ☐ writing |
+| 5 | 1245 | topic_or_entity_mismatch | requires manual annotation | ☐ writing |
+| | Improvements suggested for the identified failures | | | ☐ writing |
+| | *(Bonus)* one improvement prototyped with before/after number | Skipped, documented instead: only 6/6000 (query, relevant-doc) pairs in the whole run were truncated and none rank among the failures above, so a sliding-window prototype wouldn't fix any observed failure — reported as a ruled-out cause, not claimed as a fix | ☑ documented negative finding |
 
 ---
 

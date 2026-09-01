@@ -1,0 +1,30 @@
+{
+  "metric": "ndcg@5",
+  "comparison": {
+    "metric": "ndcg@5",
+    "n_queries": 300,
+    "baseline_mean": 0.6693627953603599,
+    "treatment_mean": 0.6600353750541064,
+    "mean_delta": -0.009327420306253614,
+    "n_improved": 40,
+    "n_degraded": 48,
+    "n_unchanged": 212,
+    "pct_improved": 13.333333333333334,
+    "pct_degraded": 16.0
+  },
+  "paired_bootstrap": {
+    "observed_mean_delta": -0.009327420306253614,
+    "ci_lower": -0.037880025709444175,
+    "ci_upper": 0.020006445005079802,
+    "confidence_level": 0.95,
+    "n_samples": 10000,
+    "n_queries": 300,
+    "significant": false
+  },
+  "wilcoxon_signed_rank": {
+    "w_stat": 1775.0,
+    "z": -0.7593561542607622,
+    "p_value": 0.44763953447329463,
+    "n_nonzero": 88
+  }
+}

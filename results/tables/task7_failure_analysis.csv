@@ -1,0 +1,6 @@
+query_id,query,causes,evidence,n_automated_causes,ndcg_delta,ndcg_stage1,ndcg_stage2
+324,Deleting Raptor reduces G-CSF levels.,abbreviation_ambiguity,query contains abbreviation(s): CSF,1,-1.0,1.0,0.0
+659,Ivermectin is used to treat lymphatic filariasis.,topic_or_entity_mismatch (requires manual annotation),none of the automated checks fired,0,-1.0,1.0,0.0
+94,Albendazole is used to treat lymphatic filariasis.,topic_or_entity_mismatch (requires manual annotation),none of the automated checks fired,0,-1.0,1.0,0.0
+70,Activation of PPM1D suppresses p53 function.,topic_or_entity_mismatch (requires manual annotation),none of the automated checks fired,0,-0.6509209298071326,0.6509209298071326,0.0
+1245,The one-child policy has been successful in lowering population growth.,topic_or_entity_mismatch (requires manual annotation),none of the automated checks fired,0,-0.6309297535714575,0.6309297535714575,0.0

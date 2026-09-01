@@ -1,0 +1,6 @@
+case,query_id,note,query_raw
+relevant_promoted,1368,doc 2425364 moved rank 14->1,Vitamin D deficiency effects the term of delivery.
+irrelevant_demoted,238,doc 4463811 moved rank 2->20,Cells undergoing methionine restriction may activate miRNAs.
+minimal_change,1012,max |delta| in top-5 = 1,Radioiodine treatment of non-toxic multinodular goitre reduces thyroid volume.
+failure,324,nDCG@5 dropped by 1.000,Deleting Raptor reduces G-CSF levels.
+terminology_abbreviation,936,"query contains abbreviation, max |delta| = 18",Peroxynitrite is required for nitration of TCR/CD8.

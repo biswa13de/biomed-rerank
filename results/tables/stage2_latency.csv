@@ -1,0 +1,2 @@
+operation,p50_ms,p95_ms,mean_ms,min_ms,max_ms,n_runs
+rerank_k20,139.906,143.172,140.466,138.728,143.793,5

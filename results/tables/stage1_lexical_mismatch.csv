@@ -1,0 +1,6 @@
+query_id,query,doc_id,doc_title,bm25_rank,dense_rank
+1,0-dimensional biomaterials show inductive properties.,31715818,New opportunities: the use of nanotechnologies to manipulate and track stem cells.,not in top-100,5
+133,"Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src.",17934082,Membrane lipids in invadopodia and podosomes: Key structures for cancer invasion and metastasis,22,3
+179,Birth-weight is positively associated with breast cancer.,27123743,Role of birthweight in the etiology of breast cancer.,not in top-100,1
+179,Birth-weight is positively associated with breast cancer.,23557241,Intrauterine factors and risk of breast cancer: a systematic review and meta-analysis of current evidence.,20,5
+238,Cells undergoing methionine restriction may activate miRNAs.,2251426,microRNAs: A Safeguard against Turmoil?,20,2
